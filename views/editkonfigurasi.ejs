@@ -1,0 +1,164 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js"></script>
+    
+        <title>Bank Soal</title>
+        <style>
+            /* Modify the background color */
+         
+            .navbar-custom {
+                background-color: #141E61;
+            }
+            /* Modify brand and text color */
+         
+            .navbar-custom .navbar-brand,
+            .navbar-custom .navbar-text {
+                color: whitesmoke;
+            }
+            .button1 {
+                background-color: #141E61; 
+            }
+            .button2 {
+                border-color: 5px #141E61;
+                background-color: white;
+                color: #141E61;
+                /* padding: 14px 28px;
+                font-size: 16px; */
+                cursor: pointer;
+            }
+
+            /* Blue */
+            .success {
+            border-color: #141E61;
+            color: #141E61;
+            }
+
+            .success:hover {
+            background-color: #141E61;
+            color: white;
+            }                
+        </style>
+    </head>
+
+    <nav class="navbar navbar-expand-sm navbar-custom justify-content-end">
+        <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" style="color: whitesmoke"; href="#">myITS classroom</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a class="nav-link" style="color: whitesmoke"; href="#">Qonita Nailul M</a></li>
+                <li class="nav-item">
+                    <iconify-icon icon="gridicons:user-circle" style="color: #141E61;" width="35" height="35"></iconify-icon>
+                </li>  
+            </ul>
+          </div>
+    </nav>
+
+
+    <body style="background-color: F1F4F5;">
+        <div class="container">
+            <div class="row pt-3 text-xs font-bold">
+                <div class="col-lg-12">
+                    <p style="color: #141E61;"><a href="/soal" style="color: #141E61;">Bank Soal</a> / <a href="/paketsoal" style="color: #141E61;">Paket Soal</a> / <a href="/konfigurasi" style="color: #141E61;">Detail Paket Soal</a> / <%= paket_soal.judul %></p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-9">
+                    <h4>Edit Detail Paket Soal</h4>           
+                </div>
+                <!-- <div class="col-lg-3">
+                    <a href="/konfigurasi" class="btn button2 success float-right" style="width: 200px;">
+                        <iconify-icon icon="ion:list" style="color: #141E61;" width="16" height="16"></iconify-icon>
+                        <p class="text-base font-bold" style="display: inline;">Riwayat Detail Paket</p>
+                    </a>
+                </div> -->
+            </div>
+            <div class="row mb-10">
+                <div class="col-lg-12 pt-3" style="background-color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <form method="post", action="/datapaketsoal/<%= paket_soal.id_paket_soal %>">
+                        <div class="row px-4">
+                            <div class="col-lg-7 form-group">
+                                <label for="judul" class="font-bold">Nama Paket Soal :</label>
+                                <input type="text" class="form-control" name="judul" id="judul" value="<%= paket_soal.judul %>">
+                            </div>
+                            <div class="col-lg-3 form-group">
+                                <label for="jumlah_soal" class="font-bold">Jumlah Soal :</label>
+                                <input type="number" class="form-control" name="jumlah_soal" id="jumlah_soal" value="<%= paket_soal.jumlah_soal %>">
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-block button1 float-right mt-8" style="color: whitesmoke;" type="submit">
+                                    Generate <iconify-icon icon="bxs:save" style="color: white;" width="16" height="16"></iconify-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <form method="post", action="/paketujian/simpan">
+                <div class="row">
+                    <div class="col-lg-3 form-group">
+                        <label for="id_materi" class="font-bold">Materi :</label>
+                        <select class="form-control" name="id_materi" id="id_materi">
+                            <% materi.forEach(function(b){ %>
+                                <option value="<%= b.id_materi %>"><%= b.nama_materi %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 form-group">
+                        <label for="persentase_materi" class="font-bold">Persentase Materi :</label>
+                        <input type="number" class="form-control" name="persentase_materi" id="persentase_materi" min="0" max="1" step="0.1" placeholder="0.0 - 1.0">
+                    </div>
+                    <div class="col-lg-2 form-group">
+                        <label for="persentase_mudah" class="font-bold">Proporsi Soal Mudah (%):</label>
+                        <input type="number" class="form-control" name="persentase_mudah" id="persentase_mudah" min="0" max="1" step="0.1" placeholder="0.0 - 1.0">
+                    </div>
+                    <div class="col-lg-2 form-group">
+                        <label for="persentase_sedang" class="font-bold">Proporsi Soal Sedang (%):</label>
+                        <input type="number" class="form-control" name="persentase_sedang" id="persentase_sedang" min="0" max="1" step="0.1" placeholder="0.0 - 1.0">
+                    </div>
+                    <div class="col-lg-2 form-group">
+                        <label for="persentase_sulit" class="font-bold">Proporsi Soal Sulit (%):</label>
+                        <input type="number" class="form-control" name="persentase_sulit" id="persentase_sulit" min="0" max="1" step="0.1" placeholder="0.0 - 1.0">
+                    </div>
+                    <div class="col-lg-1 pt-8">
+                        <input type="hidden" name="id_paket_soal" id="id_paket_soal" value="<%= paket_soal.id_paket_soal %>">
+                        <button class="btn button1 float-right" style="width: 60px;" type="submit">
+                            <iconify-icon icon="gg:add" style="color: white;" width="20" height="20"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-sm-12" style="background-color: white; border-width: 2px; height: 250px; margin-top: -1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="h-100 overflow-auto px-2 pt-2">
+
+                        <% konfigurasi_ujian.forEach(function(ed){ %>
+                         
+                        <div class="input-group">
+                            <div class="form-control" style="width: 200px;"><strong><%= ed.nama_materi %></strong></div>
+                            <div class="form-control "><strong><%= ed.persentase_materi %></strong></div>
+                            <div class="form-control"><strong><%= ed.persentase_mudah %></strong></div>
+                            <div class="form-control"><strong><%= ed.persentase_sedang %></strong></div>
+                            <div class="form-control"><strong><%= ed.persentase_sulit %></strong></div>
+                            <div class="input-group-append">
+                                <a href="/topikujian/hapus/<%= ed.id_konfigurasiujian %>" class="btn btn-danger">
+                                    <iconify-icon icon="mdi:cancel-bold" style="color: white;" width="24" height="24"></iconify-icon>
+                                </a>
+                            </div>
+                        </div>
+
+                        <% }); %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

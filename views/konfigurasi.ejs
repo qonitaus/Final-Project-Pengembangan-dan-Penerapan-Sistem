@@ -1,0 +1,115 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js"></script>
+    
+        <title>Bank Soal</title>
+        <style>
+            /* Modify the background color */
+         
+            .navbar-custom {
+                background-color: #141E61;
+            }
+            /* Modify brand and text color */
+         
+            .navbar-custom .navbar-brand,
+            .navbar-custom .navbar-text {
+                color: whitesmoke;
+            }
+            .button1 {
+                background-color: #141E61; 
+            }
+            .button2 {
+                border-color: 5px #141E61;
+                background-color: white;
+                color: #141E61;
+                /* padding: 14px 28px;
+                font-size: 16px; */
+                cursor: pointer;
+            }
+
+            /* Blue */
+            .success {
+            border-color: #141E61;
+            color: #141E61;
+            }
+
+            .success:hover {
+            background-color: #141E61;
+            color: white;
+            }
+            div.card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }                      
+        </style>
+    </head>
+
+    <nav class="navbar navbar-expand-sm navbar-custom justify-content-end">
+        <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" style="color: whitesmoke"; href="#">myITS classroom</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a class="nav-link" style="color: whitesmoke"; href="#">Qonita Nailul M</a></li>
+                <li class="nav-item">
+                    <iconify-icon icon="gridicons:user-circle" style="color: #141E61;" width="35" height="35"></iconify-icon>
+                </li>  
+            </ul>
+          </div>
+    </nav>
+
+    <body style="background-color: F1F4F5;">
+        <div class="container">
+            <div class="row pt-3 text-xs font-bold">
+                <div class="col-lg-12">
+                    <p style="color: #141E61;"><a href="/soal" style="color: #141E61;">Bank Soal</a> / <a href="/paketsoal" style="color: #141E61;">Paket Soal</a> / <a href="/konfigurasi" style="color: #141E61;">Detail Paket Soal</a></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <h4>Riwayat Detail Paket</h4>           
+                </div>
+                <div class="col-lg-4">
+                    <form method="#" action="#">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Cari Detail Paket Soal">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary bg-white" style="border-color: #141E61" type="submit">
+                                    <iconify-icon icon="gg:search" style="color: #141E61;" width="20" height="20"></iconify-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row px-3">
+                <div class="col-lg-12">
+
+                    <% paket_soal.forEach(function(e){ %>
+
+                    <div class="row mb-2 pl-4 py-3" style="background-color: white; border-width: 2px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <div class="col-sm-9 d-flex align-items-center">
+                            <span class="font-bold text-2xl px-2"><%= e.judul %></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="row mb-1 d-flex justify-content-center">
+                                <a href="/konfigurasi/<%= e.id_paket_soal %>" class="btn button2 success" style="width: 180px;">
+                                    Lihat Detail Paket <iconify-icon icon="ion:open-outline" style="color: #141E61;" width="16" height="16"></iconify-icon>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% }); %>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
